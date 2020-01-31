@@ -17,7 +17,7 @@ with DAG(dag_id='exercise_4_external_jobs', default_args=default_args,
          dagrun_timeout=timedelta(minutes=60)) as dag:
     psql_to_gcs = PostgresToGoogleCloudStorageOperator(
         task_id='postgres_to_gcs',
-        sql='select transaction, price, postcode from land_registry_price_paid_uk LIMIT 50;',
+        sql='select * from land_registry_price_paid_uk LIMIT 50;',
         bucket='gdd_airflow_1_npage',
         filename='land_registry_price_paid_uk-{{ ds }}',
         postgres_conn_id='postgres_gdd',
