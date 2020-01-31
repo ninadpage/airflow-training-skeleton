@@ -36,7 +36,7 @@ with DAG(dag_id='exercise_3_branching', default_args=default_args,
          schedule_interval='@daily',
          dagrun_timeout=timedelta(minutes=60)) as dag:
     print_weekday = PythonOperator(
-        task_id='print_execution_date',
+        task_id='print_weekday',
         python_callable=_print_execution_date,
         provide_context=True,
     )
