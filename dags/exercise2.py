@@ -13,16 +13,16 @@ default_args = {
 }
 
 
-def print_execution_date(**context):
+def _print_execution_date(**context):
     print(f'This was executed on {context["execution_date"]}')
 
 
 with DAG(dag_id='exercise_2_templating', default_args=default_args,
          schedule_interval='@daily',
          dagrun_timeout=timedelta(minutes=60)) as dag:
-    _print_execution_date = PythonOperator(
+    print_execution_date = PythonOperator(
         task_id='print_execution_date',
-        python_callable=print_execution_date,
+        python_callable=_print_execution_date,
         provide_context=True,
     )
     wait_1 = BashOperator(task_id='wait_1', bash_command='sleep 1')
@@ -30,4 +30,4 @@ with DAG(dag_id='exercise_2_templating', default_args=default_args,
     wait_10 = BashOperator(task_id='wait_10', bash_command='sleep 10')
     the_end = DummyOperator(task_id='the_end')
 
-    _print_execution_date >> [wait_1, wait_5, wait_10] >> the_end
+    print_execution_date >> [wait_1, wait_5, wait_10] >> the_end
