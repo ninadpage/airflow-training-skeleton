@@ -52,7 +52,7 @@ with DAG(dag_id='exercise_2_templating', default_args=default_args,
     email_joe = DummyOperator(task_id='email_joe')
     final_task = BashOperator(
         task_id='wait_5',
-        bash_command='echo "Done at {{ execution_date }}"'
+        bash_command='echo "Finished at {{ execution_date }}"'
     )
 
     print_weekday >> branching >> [email_bob, email_alice, email_joe] >> final_task
