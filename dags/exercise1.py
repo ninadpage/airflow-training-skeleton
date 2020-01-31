@@ -10,7 +10,8 @@ default_args = {
     'start_date': airflow.utils.dates.days_ago(2),
 }
 
-with DAG(dag_id='exercise_1', default_args=default_args, schedule_interval='@daily',
+
+with DAG(dag_id='exercise_1.1', default_args=default_args, schedule_interval='@daily',
          dagrun_timeout=timedelta(minutes=60)) as dag1:
     t1 = DummyOperator(task_id='task1')
     t2 = DummyOperator(task_id='task2')
@@ -20,7 +21,8 @@ with DAG(dag_id='exercise_1', default_args=default_args, schedule_interval='@dai
 
     t1 >> t2 >> [t3, t4] >> t5
 
-with DAG(dag_id='exercise_2', default_args=default_args,
+
+with DAG(dag_id='exercise_1.2', default_args=default_args,
          schedule_interval='45 13 * * Mon,Wed,Fri',
          dagrun_timeout=timedelta(minutes=60)) as dag2:
     t1 = DummyOperator(task_id='task1')
@@ -31,7 +33,8 @@ with DAG(dag_id='exercise_2', default_args=default_args,
 
     t1 >> t2 >> [t3, t4] >> t5
 
-with DAG(dag_id='exercise_3', default_args=default_args,
+
+with DAG(dag_id='exercise_1.3', default_args=default_args,
          schedule_interval=timedelta(minutes=150),
          dagrun_timeout=timedelta(minutes=60)) as dag3:
     t1 = DummyOperator(task_id='task1')
