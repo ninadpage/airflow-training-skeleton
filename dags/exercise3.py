@@ -25,7 +25,8 @@ weekday_person_mapping = {
 
 
 def _print_execution_date(**context):
-    print(f"This was executed on {context['execution_date'].strftime('%A')}, {context['execution_date']}")
+    print(f"This was executed on {context['execution_date'].strftime('%A')},"
+          f" {context['execution_date']}")
 
 
 def _get_person_to_email(**context):
