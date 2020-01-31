@@ -14,7 +14,7 @@ default_args = {
 
 
 def print_execution_date(**context):
-    print(context['execution_date'])
+    print(f'This was executed on {context["execution_date"]}')
 
 
 with DAG(dag_id='exercise_2_templating', default_args=default_args,
