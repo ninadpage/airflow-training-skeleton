@@ -32,7 +32,7 @@ def _get_person_to_email(**context):
     return f"email_{weekday_person_mapping[context['execution_date'].strftime('%A')]}"
 
 
-with DAG(dag_id='exercise_2_templating', default_args=default_args,
+with DAG(dag_id='exercise_3_branching', default_args=default_args,
          schedule_interval='@daily',
          dagrun_timeout=timedelta(minutes=60)) as dag:
     print_weekday = PythonOperator(
