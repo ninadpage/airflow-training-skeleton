@@ -10,7 +10,7 @@ default_args = {
     'start_date': airflow.utils.dates.days_ago(2),
 }
 
-with DAG(dag_id='exercise_1', default_args=default_args, schedule_interval=None,
+with DAG(dag_id='exercise_1', default_args=default_args, schedule_interval='@daily',
          dagrun_timeout=timedelta(minutes=60)) as dag:
     t1 = DummyOperator(task_id='task1')
     t2 = DummyOperator(task_id='task2')
