@@ -53,7 +53,7 @@ with DAG(dag_id='exercise_3_branching', default_args=default_args,
     email_joe = DummyOperator(task_id='email_joe')
     final_task = BashOperator(
         task_id='final_task',
-        bash_command='echo "Finished at {{ execution_date }}"',
+        bash_command='echo "DAG invoked at {{ execution_date }}, finished at $(date)"',
         trigger_rule=TriggerRule.NONE_FAILED,
     )
 
