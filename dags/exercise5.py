@@ -6,7 +6,7 @@ from airflow.contrib.operators.dataproc_operator import DataprocClusterCreateOpe
 from airflow.contrib.operators.gcs_to_bq import GoogleCloudStorageToBigQueryOperator
 from airflow.contrib.operators.postgres_to_gcs_operator import \
     PostgresToGoogleCloudStorageOperator
-from airflow.models import DAG
+from airflow.models import DAG, Variable
 from airflow.utils.trigger_rule import TriggerRule
 
 from operators.http_to_gcs_operator import HttpToGcsOperator
@@ -16,6 +16,7 @@ default_args = {
     'owner': 'Airflow',
     'start_date': datetime(2019, 1, 1),
     'end_date': datetime(2019, 11, 28),
+    'project_id': Variable.get('gcp_project'),
 }
 
 
