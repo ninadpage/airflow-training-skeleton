@@ -1,2 +1,3 @@
 slackclient
-apache-airflow[gcp_api,postgres]==1.10.7
+apache-airflow[gcp_api,postgres]==1.10.9
+python-launch-library==0.6
