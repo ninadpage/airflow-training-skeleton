@@ -38,8 +38,13 @@ with DAG(dag_id='exercise_5_real_estate', default_args=default_args,
     # the result in GCS
     exchange_rates_to_gcs = HttpToGcsOperator(
         task_id='exchange_rates_to_gcs',
-        endpoint="https://api.exchangeratesapi.io/history?"
-                 "start_at={{ yesterday_ds }}&end_at={{ ds }}&symbols=EUR&base=GBP",
+        endpoint="history",
+        params={
+            'start_at': '{{ yesterday_ds }}',
+            'end_at': '{{ ds }}',
+            'symbols': 'EUR',
+            'base': 'GBP',
+        },
         gcs_bucket="gdd_airflow_npage_exchange_rates",
         gcs_path='exchange_rates-{{ ds }}.json',
     )
