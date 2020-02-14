@@ -38,8 +38,9 @@ with DAG(dag_id='exercise_5_real_estate', default_args=default_args,
     # the result in GCS
     exchange_rates_to_gcs = HttpToGcsOperator(
         task_id='exchange_rates_to_gcs',
-        endpoint="history",
-        params={
+        base_url='https://api.exchangeratesapi.io',
+        endpoint='history',
+        data={
             'start_at': '{{ yesterday_ds }}',
             'end_at': '{{ ds }}',
             'symbols': 'EUR',
@@ -54,7 +55,7 @@ with DAG(dag_id='exercise_5_real_estate', default_args=default_args,
         task_id='create_dataproc_cluster',
         cluster_name='ephemeral-real-estate-{{ ds_nodash }}',
         num_workers=2,
-        zone='europe-west1',
+        zone=Variable.get('gce_zone'),
     )
 
     [land_registry_prices_to_gcs, exchange_rates_to_gcs] >> create_dataproc_cluster
