@@ -9,7 +9,7 @@ from airflow.contrib.operators.postgres_to_gcs_operator import \
 from airflow.models import DAG
 from airflow.utils.trigger_rule import TriggerRule
 
-from dags.operators.http_to_gcs_operator import HttpToGcsOperator
+from operators.http_to_gcs_operator import HttpToGcsOperator
 
 
 default_args = {
