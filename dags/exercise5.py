@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 import airflow
 from airflow.contrib.operators.dataproc_operator import DataprocClusterCreateOperator, \
@@ -14,8 +14,8 @@ from operators.http_to_gcs_operator import HttpToGcsOperator
 
 default_args = {
     'owner': 'Airflow',
-    'start_date': '2019-01-01',
-    'end_date': '2019-11-28',
+    'start_date': datetime(2019, 1, 1),
+    'end_date': datetime(2019, 11, 28),
 }
 
 
